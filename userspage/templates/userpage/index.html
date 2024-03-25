@@ -1,0 +1,64 @@
+{% extends 'layouts.html' %}
+
+{% block title %}
+<title> Ecommerce </title>
+{% endblock %}
+
+{% block main_content %}
+{% include 'userpage/header.html' %}
+
+
+<!-- carousel -->
+
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/static/images/360_F_429052080_ycazkIWim4TW2v3h2Ms3zLq438jlwnJk.jpg" class="d-block w-100" alt="...">
+  
+    </div>
+    <div class="carousel-item">
+      <img src="/static/images/rs=h_1000,cg_true.webp" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/static/images/Untitled-1024-×-683px-26.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+
+
+<div class="container-fluid mt-2">
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+
+
+  {% for p in products %}
+     <div class="col">
+    <div class="card">
+      <img src="//{{p.product_image}}" class="card-img-top" alt="{{p.product_name}}">
+      <div class="card-body">
+        <h5 class="card-title">{{p.product_name}}</h5>
+          <h5>Rs {{p.product_price}}</h5>
+          <a href="/productdetails/{{p.id}}"  class="btn btn-success">View Details</a>
+      </div>
+    </div>
+      </div>
+     {% endfor %}
+
+ </div>
+
+</div>
+
+
+{% include 'userpage/footer.html' %}
+{% endblock %}

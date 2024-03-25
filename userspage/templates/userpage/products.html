@@ -1,0 +1,59 @@
+
+{% extends 'layouts.html' %}
+
+{% block title %}
+<title> All products </title>
+{% endblock %}
+
+{% block main_content %}
+{% include 'userpage/header.html' %}
+
+   
+
+    
+    <div class="CONTAINER text-bg-light">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10">
+                {% for msg in messages%}
+            {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-sucess">
+                {{msg}}
+            </div>
+             {% endif %}
+
+             {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert alert-danger">
+                {{msg}}
+            </div>
+             {% endif %}
+
+             {% endfor %}
+
+
+                <table class="table table-bordered tabled-striped">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                       
+                        <th>Image</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        
+                    </tr>
+                    {% for item in products %}
+                    <tr>
+                        <td>{{item.product_name}}</td>
+                        <td>{{item.product_price}}</td>
+                        
+                        <td><img src="/{{item.product_image}}" alt="{{item.product_name}}" width="100" </td>
+                        <td>{{item.product_description}}</td>
+                        <td>{{item.category.category_name}}</td>
+                        
+                    </tr>
+                    {% endfor%}
+                </table>
+            </div>
+        </div>
+    </div>
+    {% include 'userpage/footer.html' %} 
+    {% endblock %}

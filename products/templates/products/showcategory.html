@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>show category</title>
+</head>
+
+<body>
+
+
+    {% extends 'admins/adminlayout.html' %}
+    {% block title %}
+    <title> Category list</title>
+    {% endblock %}
+    {% block main_content %}
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-5">
+             {% for msg in messages%}
+            {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-sucess">
+                {{msg}}
+            </div>
+             {% endif %}
+
+             {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert alert-danger">
+                {{msg}}
+            </div>
+             {% endif %}
+
+             {% endfor %}
+                <table class="table table-border tabled-striped">
+                    <tr>
+                        <th>Category Name</th>
+                        <th>Action</th>
+
+                    </tr>
+                    {%for item in category%}
+                    <tr>
+                        <td>{{item.category_name}}</td>
+                        <td>
+                            <a href="/products/updatecategory/{{item.id}}" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="/products/deletecategory/{{item.id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this category?')"><i
+                                    class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="addproduct "><button><a href="/products/postcategory">  Add Category </a></button></div>
+
+    {% endblock %}
